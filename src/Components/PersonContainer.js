@@ -14,14 +14,14 @@ export default class PersonContainer extends Component {
 
     previousPerson() {
         let index = this.state.currentIndex;
-        if(index < people.length) {
+        if(index > 0) {
             this.setState ({currentIndex: index - 1})
         }
     }
 
     nextPerson() {
         let index = this.state.currentIndex;
-        if(index > people.length) {
+        if(index < people.length - 1) {
             this.setState({currentIndex: index + 1})
         }
     }
@@ -30,6 +30,8 @@ export default class PersonContainer extends Component {
         return (
             <div className="person-container">
                 <PersonDetails currentPerson={people[this.state.currentIndex]}/>
+                <h3 onClick={() => this.previousPerson()} id="previous-person">{"<"} Previous</h3>
+                <h3 onClick={() => this.nextPerson()} id="next-person">Next {">"}</h3>
             </div>
         )
     }
